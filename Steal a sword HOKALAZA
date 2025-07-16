@@ -1,0 +1,206 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local playerGui = LocalPlayer:WaitForChild("PlayerGui")
+local KEY = "ME IS BACK"
+local DISCORD_LINK = "https://discord.gg/4myWDtW8yj"
+
+local keyGui = Instance.new("ScreenGui")
+keyGui.Name = "KeySystemUI"
+keyGui.ResetOnSpawn = false
+keyGui.Parent = playerGui
+
+local bg = Instance.new("Frame", keyGui)
+bg.Size = UDim2.new(0, 350, 0, 200)
+bg.Position = UDim2.new(0.5, -175, 0.5, -100)
+bg.BackgroundColor3 = Color3.fromRGB(34, 34, 44)
+Instance.new("UICorner", bg).CornerRadius = UDim.new(0, 12)
+
+local title = Instance.new("TextLabel", bg)
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 5)
+title.BackgroundTransparency = 1
+title.Text = "Enter Key to Access"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 22
+
+local input = Instance.new("TextBox", bg)
+input.PlaceholderText = "Enter Key Here..."
+input.Size = UDim2.new(0.85, 0, 0, 40)
+input.Position = UDim2.new(0.075, 0, 0, 60)
+input.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+input.TextColor3 = Color3.fromRGB(255, 255, 255)
+input.Font = Enum.Font.Gotham
+input.TextSize = 18
+Instance.new("UICorner", input).CornerRadius = UDim.new(0, 8)
+
+local status = Instance.new("TextLabel", bg)
+status.Size = UDim2.new(1, 0, 0, 24)
+status.Position = UDim2.new(0, 0, 0, 105)
+status.BackgroundTransparency = 1
+status.Text = ""
+status.TextColor3 = Color3.fromRGB(255, 100, 100)
+status.Font = Enum.Font.GothamBold
+status.TextSize = 18
+
+local confirmBtn = Instance.new("TextButton", bg)
+confirmBtn.Size = UDim2.new(0.4, 0, 0, 36)
+confirmBtn.Position = UDim2.new(0.3, 0, 0, 135)
+confirmBtn.BackgroundColor3 = Color3.fromRGB(110, 140, 250)
+confirmBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+confirmBtn.Text = "Submit"
+confirmBtn.Font = Enum.Font.GothamBold
+confirmBtn.TextSize = 18
+Instance.new("UICorner", confirmBtn).CornerRadius = UDim.new(0, 8)
+
+local copyBtn = Instance.new("TextButton", bg)
+copyBtn.Size = UDim2.new(0.9, 0, 0, 30)
+copyBtn.Position = UDim2.new(0.05, 0, 1, -35)
+copyBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
+copyBtn.TextColor3 = Color3.fromRGB(200, 200, 255)
+copyBtn.Text = "📋 Copy Discord Invite: discord.gg/4myWDtW8yj"
+copyBtn.Font = Enum.Font.Gotham
+copyBtn.TextSize = 16
+Instance.new("UICorner", copyBtn).CornerRadius = UDim.new(0, 8)
+
+copyBtn.MouseButton1Click:Connect(function()
+    setclipboard(DISCORD_LINK)
+    copyBtn.Text = "✅ Copied to clipboard!"
+    task.wait(1.5)
+    copyBtn.Text = "📋 Copy Discord Invite: discord.gg/4myWDtW8yj"
+end)
+
+local function loadMainScript()
+    keyGui:Destroy()
+
+  
+local CoreGui = game:GetService("CoreGui")
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+
+local splashGui = Instance.new("ScreenGui")
+splashGui.Name = "SplashScreen"
+splashGui.ResetOnSpawn = false
+splashGui.Parent = CoreGui
+
+local splashFrame = Instance.new("Frame")
+splashFrame.Size = UDim2.new(1, 0, 1, 0)
+splashFrame.BackgroundTransparency = 0
+splashFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 30)
+splashFrame.Parent = splashGui
+
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 10, 60)),
+    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 10, 35))
+}
+gradient.Rotation = 0
+gradient.Parent = splashFrame
+
+TweenService:Create(
+    gradient,
+    TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1),
+    {Rotation = 360}
+):Play()
+
+local blur = Instance.new("BlurEffect")
+blur.Size = 18
+blur.Parent = Lighting
+
+local splashText = Instance.new("TextLabel")
+splashText.Size = UDim2.new(1, 0, 1, 0)
+splashText.BackgroundTransparency = 1
+splashText.Text = "MADE BY MEV"
+splashText.TextColor3 = Color3.new(1, 1, 1)
+splashText.Font = Enum.Font.GothamBold
+splashText.TextScaled = true
+splashText.TextStrokeColor3 = Color3.new(0, 0, 0)
+splashText.TextStrokeTransparency = 0.25
+splashText.Parent = splashFrame
+
+local txtGradient = Instance.new("UIGradient", splashText)
+txtGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255,0,0)),
+    ColorSequenceKeypoint.new(0.25, Color3.fromRGB(255,255,0)),
+    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0,255,0)),
+    ColorSequenceKeypoint.new(0.75, Color3.fromRGB(0,255,255)),
+    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0,0,255)),
+}
+TweenService:Create(
+    txtGradient,
+    TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1),
+    {Rotation = 360}
+):Play()
+
+wait(2)
+splashGui:Destroy()
+blur:Destroy()
+
+-- Load Rayfield
+local success, Rayfield = pcall(function()
+    return loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+end)
+if not success then
+    warn("Failed to load Rayfield")
+    return
+end
+
+-- Main GUI Window
+local Window = Rayfield:CreateWindow({
+    Name = "Hokalazahub",
+    Theme = "Default",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "HokalazaHub",
+        FileName = "Settings"
+    }
+})
+
+local tab = Window:CreateTab("Main Menu", 4483362458)
+tab:CreateSection("Spawn")
+
+local weapons = {
+    "Mystic Reaper",
+    "Bloodvine Axe",
+    "Ice Blade",
+    "Thunder Hammer",
+    "Shadow Scythe",
+    "Inferno Blade"
+}
+
+for _, weapon in ipairs(weapons) do
+    tab:CreateButton({
+        Name = weapon,
+        Callback = function()
+            game:GetService("ReplicatedStorage")
+                :WaitForChild("Events")
+                :WaitForChild("AddWeaponToBase")
+                :FireServer(weapon)
+        end
+    })
+end
+
+tab:CreateButton({
+    Name = "Heavens Halberd",
+    Callback = function()
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("Events")
+            :WaitForChild("AddWeaponToBase")
+            :FireServer("Heavens Halberd")
+    end
+})
+
+Rayfield:LoadConfiguration()
+
+
+end
+
+confirmBtn.MouseButton1Click:Connect(function()
+    if input.Text == KEY then
+        status.Text = "✅ Access Granted!"
+        task.wait(0.5)
+        loadMainScript()
+    else
+        status.Text = "❌ Wrong Key!"
+    end
+end)
